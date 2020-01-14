@@ -9,7 +9,7 @@ export default new Router({
       path: '/manager',
       name: 'index',
       component: () => import('@/layout'),
-      redirect:'/manager/project',
+      redirect:'/manager/contract',
       beforeEnter(to,from,next){
         // if(store.getters.token){
           next()
@@ -20,10 +20,22 @@ export default new Router({
       },
       children:[
         {
-          path: '/manager/project',
-          name:'Project',
-          component: () => import('@/components/manager/project'),
-          meta:{keepAlive:true,title:['Project']}
+          path: '/manager/finance',
+          name:'Finance',
+          component: () => import('@/components/manager/finance'),
+          meta:{keepAlive:true,title:['Finance']}
+        },
+        {
+          path: '/manager/contract',
+          name:'Contract',
+          component: () => import('@/components/manager/contract'),
+          meta:{keepAlive:true,title:['Contract']}
+        },
+        {
+          path: '/manager/employee',
+          name:'Employee',
+          component: () => import('@/components/manager/employee'),
+          meta:{keepAlive:true,title:['Employee']}
         },
       ]
     }
