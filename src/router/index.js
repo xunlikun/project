@@ -6,6 +6,65 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect:'/login',
+      // beforeEnter(to,from,next){
+      //   if(store.getters.token){
+      //     next('/manager')
+      //   }else{
+      //     next()
+      //   }
+      // }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/views/login'),
+      // beforeEnter(to,from,next){
+      //   if(store.getters.token){
+      //     next('/manager')
+      //   }else{
+      //     next()
+      //   }
+      // }
+    },
+    {
+      path: '/firstLogin',
+      name: 'FirstLogin',
+      component: () => import('@/views/firstLogin'),
+      // beforeEnter(to,from,next){
+      //   if(store.getters.token){
+      //     next('/manager')
+      //   }else{
+      //     next()
+      //   }
+      // }
+    },
+    {
+      path: '/forget',
+      name: 'Forget',
+      component: () => import('@/views/forget'),
+      // beforeEnter(to,from,next){
+      //   if(store.getters.token){
+      //     next('/manager')
+      //   }else{
+      //     next()
+      //   }
+      // }
+    },
+    {
+      path: '/reset',
+      name: 'Reset',
+      component: () => import('@/views/reset'),
+      // beforeEnter(to,from,next){
+      //   if(store.getters.token){
+      //     next('/manager')
+      //   }else{
+      //     next()
+      //   }
+      // }
+    },
+    {
       path: '/manager',
       name: 'index',
       component: () => import('@/layout'),
@@ -20,10 +79,10 @@ export default new Router({
       },
       children:[
         {
-          path: '/manager/finance',
-          name:'Finance',
-          component: () => import('@/components/manager/finance'),
-          meta:{keepAlive:true,title:['Finance']}
+          path: '/manager/invoic',
+          name:'Invoic',
+          component: () => import('@/components/manager/invoic'),
+          meta:{keepAlive:true,title:['Invoic']}
         },
         {
           path: '/manager/contract',

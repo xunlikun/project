@@ -1,18 +1,17 @@
 <template>
     <div>
-        finan
+        <Forget></Forget>
     </div>
 </template>
 <script>
+import Forget from '@/components/temp/forget.vue'
 export default {
+    components:{Forget},
     data() {
         return {
             
         }
     },
-    created(){
-        console.log(this)
-    }
 }
 </script>
 <style lang="scss" scoped>

@@ -38,7 +38,6 @@
         <Layout>
             <Header :style="{position: 'fixed', width: '100%',top:'0',zIndex:'1000'}">
                 <Menu mode="horizontal" theme="dark" :active-name="currentMenuItemNum" @on-select='loading'>
-                    <div class="layout-logo"></div>
                     <div class="layout-nav">
                         
                         <MenuItem class='layout-nav-item' name="2" to='/manager/contract'>
@@ -49,18 +48,16 @@
                             <Icon type="ios-analytics"></Icon>
                             人员管理
                         </MenuItem>
-                        <MenuItem class='layout-nav-item' name="1" to='/manager/finance'>
+                        <MenuItem class='layout-nav-item' name="1" to='/manager/invoic'>
                             <Icon type="ios-navigate"></Icon>
-                            财务
+                            发票管理
                         </MenuItem>
                             <Dropdown @on-click="calculate" class='layout-nav-item-right' trigger="click" style="margin-left: 20px">
                                 <a href="javascript:void(0)" style="color:#fff;font-size:14px">
-                                    ok
+                                    项目A
                                     <Icon type="ios-arrow-down"></Icon>
                                 </a>
                                 <DropdownMenu slot="list">
-                                    <DropdownItem name="basic">基本信息</DropdownItem>
-                                    <DropdownItem name='safe'>安全</DropdownItem>
                                     <DropdownItem name='logOut'>退出登录</DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
@@ -92,7 +89,7 @@ import { mapGetters, mapMutations } from 'vuex'
                 get(){
                     let op = {
                         "Contract":'2',
-                        "finance":'1',
+                        "Invoic":'1',
                         "Employee":'3'
                     }
                     console.log(this.$route)
