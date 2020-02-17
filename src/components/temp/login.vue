@@ -19,7 +19,7 @@
                         </Input>
                     </FormItem>
                 </Col>
-                <Col span="12"><Button :style='{float:"right"}' type="primary" :disabled='sendingAuth' @click=" !sendingAuth && sendVerificationCode({mobile:formInline.mobile})">{{sendingAuth ? mis :'获取验证码'}}</Button></Col>
+                <Col span="12"><Button :style='{float:"right"}' type="primary" :disabled='sendingAuth' @click=" !sendingAuth && sendVerificationCode({mobile:formInline.mobile,type:'login'})">{{sendingAuth ? mis :'获取验证码'}}</Button></Col>
             </Row>
             <FormItem style="text-align:right">
                 <!-- <router-link to="/reset"> -->
@@ -37,8 +37,9 @@
     
 </template>
 <script>
+import track from '@/utils/track.js'
 import { sendVerificationCode,checkVerificationCode } from '@/api/user.js'
-import { mapMutations } from 'vuex'
+import { mapMutations,mapActions } from 'vuex'
     export default {
         data () {
             const validateAuth = (rule, value, callback) => {
@@ -71,19 +72,23 @@ import { mapMutations } from 'vuex'
                 ruleInline: {
                     mobile: [
                         { validator: validateMobile, trigger: 'blur' }
-                    ],
-                    verificationCode: [
-                        { validator: validateAuth, trigger: 'input' },
                     ]
+                    // ,
+                    // verificationCode: [
+                    //     { validator: validateAuth, trigger: 'input' },
+                    // ]
                 }
             }
         },
         methods: {
             // ...mapMutations(['SET_TEMP_TOKEN']),
+            ...mapActions(['login']),
+            @track.loading
             handleSubmit(name) {
-                this.$refs[name].validate((valid) => {
+                this.$refs[name].validate( async (valid) => {
                     if (valid) {
                         //login
+                        await this.login({mobile:this.formInline.mobile,verifyCode:this.formInline.verificationCode})
                     } else {
                         this.$Message.error('失败!');
                     }

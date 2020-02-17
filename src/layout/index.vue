@@ -54,7 +54,7 @@
                         </MenuItem>
                             <Dropdown @on-click="calculate" class='layout-nav-item-right' trigger="click" style="margin-left: 20px">
                                 <a href="javascript:void(0)" style="color:#fff;font-size:14px">
-                                    项目A
+                                    {{userInfo.userName}}
                                     <Icon type="ios-arrow-down"></Icon>
                                 </a>
                                 <DropdownMenu slot="list">
@@ -84,7 +84,7 @@ import { mapGetters, mapMutations } from 'vuex'
             next(false)
         },
         computed: {
-            ...mapGetters(['companyInfo','userInfo']),
+            ...mapGetters(['userInfo']),
             currentMenuItemNum:{
                 get(){
                     let op = {

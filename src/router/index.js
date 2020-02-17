@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import store from '@/store'
 Vue.use(Router)
 
 export default new Router({
@@ -32,13 +33,13 @@ export default new Router({
       path: '/firstLogin',
       name: 'FirstLogin',
       component: () => import('@/views/firstLogin'),
-      // beforeEnter(to,from,next){
-      //   if(store.getters.token){
-      //     next('/manager')
-      //   }else{
-      //     next()
-      //   }
-      // }
+      beforeEnter(to,from,next){
+        if(store.getters.userInfo.userStatus && store.getters.token){
+          next('/manager')
+        }else if(!store.getters.userInfo.userStatus && store.getters.token){
+          next()
+        }
+      }
     },
     {
       path: '/forget',
@@ -70,12 +71,14 @@ export default new Router({
       component: () => import('@/layout'),
       redirect:'/manager/contract',
       beforeEnter(to,from,next){
-        // if(store.getters.token){
+        if(store.getters.token && store.getters.userInfo.userStatus){
           next()
-        // }else{
-        //   store.commit('DELETE_TOKEN')
-        //   next('/login')
-        // }
+        }else if(store.getters.token && !store.getters.userInfo.userStatus){
+          next('/firstLogin')
+        }else{
+          store.commit('DELETE_TOKEN')
+          next('/login')
+        }
       },
       children:[
         {

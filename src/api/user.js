@@ -48,3 +48,10 @@ export function resetUserInfo(data){
         data
     })
 }
+export function checkIdNumber(data){
+    return request({
+        url:'/api/project/user/checkIdNumber',
+        method:'post',
+        data
+    })
+}
