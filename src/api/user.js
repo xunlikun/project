@@ -55,3 +55,10 @@ export function checkIdNumber(data){
         data
     })
 }
+export function sendSignMobileCode(data){
+    return request({
+        url:'/api/project/contract/sendSignMobileCode',
+        method:'post',
+        data
+    })
+}

@@ -10,7 +10,11 @@ const mutations = {
 }
 
 const actions = {
-   
+    async down({state,commit},url){
+        let a = document.createElement('a')
+        a.href = url
+        a.click()
+       }
 }
 
 export default {
