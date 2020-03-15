@@ -1,22 +1,30 @@
 <template>
     <div v-if="data">
         <template v-if='$route.query.calculate == "search"'>
-            <div class='main' :class='{main_bg:$route.query.calculate == "search"}'>
+           <div class='main' :class='{main_bg:$route.query.calculate == "search"}'>
                 <List>
                     <header>
-                        <h1 style="line-height:50px;text-align:center;color:#2d8cf0;opacity:.6;">人员详情</h1>
+                        <h1 style="line-height:50px;text-align:center;color:#2d8cf0;opacity:.6;margin-top:0">人员详情</h1>
                     </header>
                     <ListItem>
-                        <ListItemMeta avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar" title="姓名" :description="data.name" />
+                        <ListItemMeta title="姓名" :description="data.name">
+                            <Icon slot='avatar' type="ios-person-outline" />
+                        </ListItemMeta>
                     </ListItem>
                     <ListItem>
-                        <ListItemMeta avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar" title="身份证号码" :description="data.idNumber" />
+                        <ListItemMeta title="身份证号码" :description="data.idNumber">
+                            <Icon slot='avatar' type="md-card" />
+                        </ListItemMeta>
                     </ListItem>
                     <ListItem>
-                        <ListItemMeta avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar" title="职务" :description="data.position" />
+                        <ListItemMeta title="职务" :description="data.position">
+                            <Icon slot='avatar' type="ios-people-outline" />
+                        </ListItemMeta>
                     </ListItem>
                     <ListItem>
-                        <ListItemMeta avatar="https://dev-file.iviewui.com/userinfoPDvn9gKWYihR24SpgC319vXY8qniCqj4/avatar" title="手机号码" :description="data.mobile" />
+                        <ListItemMeta title="手机号码" :description="data.mobile">
+                            <Icon slot='avatar' type="ios-phone-portrait" />
+                        </ListItemMeta>
                     </ListItem>
                 </List>  
             </div>
@@ -138,8 +146,5 @@ export default {
     .main{
         width: 500px;
         margin: 0 auto; 
-    }
-    .main_bg{
-        box-shadow: 0 0 10px 1px #eee;
     }
 </style>

@@ -4,23 +4,29 @@
             <p>合计金额: {{totalAmount}}</p>
             <Button type="primary" @click="handleSubmit">提交</Button>
         </template>
-         <Upload
-            :headers={authorization:token}
-            name='invoice'
-            type="drag"
-            action="api/project/invoice/upload"
-            show-upload-list
-            accept='xlsx'
-            :format="['xlsx']"
-            :on-success='success'
-            :on-error='error'
-            :on-format-error='formatError'
-            >
-            <div style="padding: 20px 0">
-                <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-                <p>请确保您的开票数据准确(若您上传的上一份文件未提交,新文件将会替换它)</p>
-            </div>
-        </Upload>
+        <div style="text-align:right;line-height:66px;padding: 0 200px 0 0">
+            <Button type="primary" @click='downLoad("/api/project/invoice/download")'>下载模板</Button>
+        </div>
+        <div style="padding:26px 200px">
+            <Upload
+                :headers={authorization:token}
+                name='invoice'
+                type="drag"
+                action="api/project/invoice/upload"
+                show-upload-list
+                accept='xlsx,xls'
+                :format="['xlsx','xls']"
+                :on-success='success'
+                :on-error='error'
+                :on-format-error='formatError'
+                >
+                <div style="padding: 20px 0">
+                    <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                    <p>请确保您的开票数据准确(若您上传的上一份文件未提交,新文件将会替换它)</p>
+                </div>
+            </Upload>
+        </div>
+         
         <template v-if='uploadTrue'>
             <div>
                 <Table :data="invoicData" :columns="tableColumns" :style='{minHeight:"500px"}' stripe></Table>
@@ -38,9 +44,11 @@ import { mapGetters,mapActions } from 'vuex'
 import track from '@/utils/track.js'
 import { getInvoicAmount,submitInvoic } from '@/api/invoic.js'
 import { localStorages } from '@/utils/cache.js'
+import { downLoad } from '@/utils/sma.js'
 export default {
     data() {
         return {
+            downLoad:downLoad,
             uploadTrue:false,
             totalAmount:0.00,
             uploadIdLis:[],
@@ -68,9 +76,9 @@ export default {
                     },
                     {
                         title: '开票进度',
-                        key: 'invoicePath',
+                        key: 'invoiceStatus',
                         render: (h, params) => {
-                            return h('span', {},!params.row.invoicePath ? '未提交' : params.row.invoicePath == 1 ? '开票中' : params.row.invoicePath == 2 ? '已开票' : '');
+                            return h('span', {},!params.row.invoiceStatus ? '未提交' : params.row.invoiceStatus == 1 ? '开票中' : params.row.invoiceStatus == 2 ? '已开票' : '');
                         }
                     }
                 ],

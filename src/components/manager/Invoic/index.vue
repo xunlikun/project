@@ -35,10 +35,10 @@ import { getInvoicAmount,getBalance } from '@/api/invoic.js'
 export default {
     data() {
         return {
-            balance:0.00,
-            payAmount:0.00,
+            balance:'0.00',
+            payAmount:'0.00',
             op: {
-                    
+                    financialStatus:'0'
                 },
                 ruleCustom: {
                     contractCode: [
@@ -91,9 +91,9 @@ export default {
                     },
                     {
                         title: '开票进度',
-                        key: 'invoicePath',
+                        key: 'invoiceStatus',
                         render: (h, params) => {
-                            return h('span', {},!params.row.invoicePath ? '未提交' : params.row.invoicePath == 1 ? '开票中' : params.row.invoicePath == 2 ? '已开票' : '');
+                            return h('span', {},!params.row.invoiceStatus ? '未提交' : params.row.invoiceStatus == 1 ? '开票中' : params.row.invoiceStatus == 2 ? '已开票' : '');
                         }
                     }
                 ],
@@ -193,12 +193,12 @@ export default {
         },
         getInvoicAmount(query){
             getInvoicAmount(query).then(res => {
-                this.payAmount = res.data
+                this.payAmount = res.data ? res.data : '0.00'
             })
         },
         getBalance(){
             getBalance().then(res => {
-                this.balance = res.data
+                this.balance = res.data ? res.data : '0.00'
             })
         },
         selection(selections){
