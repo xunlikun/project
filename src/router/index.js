@@ -88,10 +88,36 @@ export default new Router({
           meta:{keepAlive:true,title:['Invoic']}
         },
         {
+          path:'/manager/invoic/upload',
+          name:"InvoicUpload",
+          component: () => import('@/components/manager/invoic/upload'),
+          meta:{keepAlive:true,title:['Invoic','Upload'] },
+          beforeEnter(to,from,next){
+            if(store.getters.userInfo.userStatus == 1){
+              next()
+            }else{
+              next('/manager')
+            }
+          }
+        },
+        {
           path: '/manager/contract',
           name:'Contract',
           component: () => import('@/components/manager/contract'),
           meta:{keepAlive:true,title:['Contract']}
+        },
+        {
+          path:'/manager/contract/contractDetail',
+          name:"ContractDetail",
+          component: () => import('@/components/manager/contract/contractDetail'),
+          meta:{keepAlive:true,title:['Contract','ContractDetail'] },
+          beforeEnter(to,from,next){
+            if(store.getters.userInfo.userStatus == 1){
+              next()
+            }else{
+              next('/manager')
+            }
+          }
         },
         {
           path: '/manager/employee',
@@ -99,6 +125,19 @@ export default new Router({
           component: () => import('@/components/manager/employee'),
           meta:{keepAlive:true,title:['Employee']}
         },
+        {
+          path: '/manager/employee/employeeDetail',
+          name:'EmployeeDetail',
+          component: () => import('@/components/manager/employee/employeeDetail'),
+          meta:{keepAlive:true,title:['Employee','EmployeeDetail']},
+          beforeEnter(to,from,next){
+            if(store.getters.userInfo.userStatus == 1){
+              next()
+            }else{
+              next('/manager')
+            }
+          }
+        }
       ]
     }
   ]

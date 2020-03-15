@@ -9,21 +9,21 @@ export function getContractList(data){
 }
 export function getContractDetail(data){
     return request({
-        url:'/api/constructor/contract/getContractDetail',
+        url:'/api/project/contract/getContractDetail',
         method:'post',
         data
     })
 }
 export function getNextContract(data){
     return request({
-        url:'/api/constructor/contract/getNextContract',
+        url:'/api/project/contract/getNextContract',
         method:'post',
         data
     })
 }
 export function getPreviousContract(data){
     return request({
-        url:'/api/constructor/contract/getPreviousContract',
+        url:'/api/project/contract/getPreviousContract',
         method:'post',
         data
     })
