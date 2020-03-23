@@ -8,7 +8,7 @@ import router from './router'
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 
-// import './myTheme/index.less'
+import './theme/index.less'
 
 //浏览器兼容
 import 'normalize.css'

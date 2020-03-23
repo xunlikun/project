@@ -1,7 +1,7 @@
 <template>
 <div class="login_main">
     <div class='title'>
-        <h1>系统标题</h1>
+        <h1>极建</h1>
     </div>
     <div class='login'>
     <p>验证</p>
