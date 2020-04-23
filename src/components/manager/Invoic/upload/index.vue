@@ -12,7 +12,7 @@
                 :headers={authorization:token}
                 name='invoice'
                 type="drag"
-                action="api/project/invoice/upload"
+                action="/api/project/invoice/upload"
                 show-upload-list
                 accept='xlsx,xls'
                 :format="['xlsx','xls']"
